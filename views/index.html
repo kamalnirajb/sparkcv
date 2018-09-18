@@ -1,1 +1,153 @@
-Hello
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Single page web app using Angularjs</title>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" src="stylesheet/style.css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="javascripts/index.js"></script>
+</head>
+
+<body>
+  <div>
+    <div>
+      <nav class="navbar navbar-inverse" role="navigation" style="padding-left:130px;">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/"><%=translation.title%><span class="sr-only">(current)</span></a></li>
+          <li><a href="/?clang=<%=translation.languageCode%>"><%=translation.language%></a></li>
+        </ul>
+      </nav>
+    </div>
+    <br/>
+    <div class="jumbotron">
+      <br/>
+      <form class="form-horizontal" role="form" style="width: 50%;">
+        <div class="form-group">
+          <label for="display_name" class="col-sm-2 control-label"><%=translation.display_name%></label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="display_name" name="display_name" placeholder="<%=translation.display_name%>" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="real_name" class="col-sm-2 control-label"><%=translation.real_name%></label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="real_name" name="real_name" placeholder="<%=translation.real_name%>" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="profile_picture" class="col-sm-2 control-label"><%=translation.profile_picture%></label>
+          <div class="col-sm-10">
+            <input type="file" class="form-control" id="profile_picture" name="profile_picture" placeholder="<%=translation.profile_picture%>" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="birthday" class="col-sm-2 control-label"><%=translation.birthday%></label>
+          <div class="col-sm-10">
+            <input type="date" class="form-control" id="birthday" name="birthday" placeholder="<%=translation.birthday%>" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="gender" class="col-sm-2 control-label"><%=translation.gender%></label>
+          <div class="col-sm-10">
+            <div class="input-group">
+    				<div id="radioBtn" class="btn-group">
+              <% for(var i=0; i < profile.sca.gender.length; i++) { %>
+    					<a class="btn btn-primary btn-sm active" data-toggle="gender" data-title="<%= profile.sca.gender[i].id %>"><%= profile.sca.gender[i].name %></a>
+              <% } %>
+    				</div>
+    				<input type="hidden" name="gender" id="gender">
+    			</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ethnicity" class="col-sm-2 control-label"><%=translation.ethnicity%></label>
+          <div class="col-sm-10 dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><%= profile.sca.ethnicity[0].name %>
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <% for(var i=0; i < profile.sca.ethnicity.length; i++) { %>
+                <li role="ethnicity"><a role="menuitem" tabindex="-1" href="#"><%= profile.sca.ethnicity[i].name %></a></li>
+              <% } %>
+            </ul>
+    			</div>
+        </div>
+        <div class="form-group">
+          <label for="religion" class="col-sm-2 control-label"><%=translation.religion%></label>
+          <div class="col-sm-10 dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><%= profile.sca.religion[0].name %>
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <% for(var i=0; i < profile.sca.religion.length; i++) { %>
+                <li role="religion"><a role="menuitem" tabindex="-1" href="#"><%= profile.sca.religion[i].name %></a></li>
+              <% } %>
+            </ul>
+    			</div>
+        </div>
+        <div class="form-group">
+          <label for="height" class="col-sm-2 control-label"><%=translation.height%></label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="height" name="height" placeholder="<%=translation.height%>" value="" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="figure" class="col-sm-2 control-label"><%=translation.figure%></label>
+          <div class="col-sm-10 dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><%= profile.sca.figure[0].name %>
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <% for(var i=0; i < profile.sca.figure.length; i++) { %>
+                <li role="figure"><a role="menuitem" tabindex="-1" href="#"><%= profile.sca.figure[i].name %></a></li>
+              <% } %>
+            </ul>
+    			</div>
+        </div>
+        <div class="form-group">
+          <label for="marital_status" class="col-sm-2 control-label"><%=translation.marital_status%></label>
+          <div class="col-sm-10 dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><%= profile.sca.marital_status[0].name %>
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <% for(var i=0; i < profile.sca.marital_status.length; i++) { %>
+                <li role="marital_status"><a role="menuitem" tabindex="-1" href="#"><%= profile.sca.marital_status[i].name %></a></li>
+              <% } %>
+            </ul>
+    			</div>
+        </div>
+        <div class="form-group">
+          <label for="occupation" class="col-sm-2 control-label"><%=translation.occupation%></label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="occupation" name="height" placeholder="<%=translation.occupation%>" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="aboutme" class="col-sm-2 control-label"><%=translation.aboutme%></label>
+          <div class="col-sm-10">
+            <textarea class="form-control" rows="4" name="aboutme"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+              <input id="submit" name="submit" type="submit" value="<%=translation.save%>" class="btn btn-primary">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

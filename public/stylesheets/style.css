@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+#radioBtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+}
